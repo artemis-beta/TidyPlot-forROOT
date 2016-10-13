@@ -32,7 +32,7 @@ void PlotWorkspaceVars(RooWorkspace* ws_,std::vector<TString> vars,std::vector<R
 
                 std::vector<Double_t> weights = {1};
 
-                for(int k=0;k<weights_.size();++k){weights.push_back(weights_[k]);}
+                for(int k=0;k<weights_.size();++k){weights.push_back(((weights_.size() > 0) ? weights_[k] : 1));}
 
                 for(int i=0;i<vars.size(); ++i)
                 {
