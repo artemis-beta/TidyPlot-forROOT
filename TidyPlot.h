@@ -21,7 +21,7 @@ std::vector<Double_t> GetRange(TTree* tree,TTree* tree2,TString var)
                 std::cout << "Range for " << var << " is: " << min << "-" << max << std::endl;
                 return x;
         }
-void PlotWorkspaceVars(RooWorkspace* ws_,std::vector<TString> vars,std::vector<RooDataSet*> data_list,std::vector<Double_t> weights_={0},TString output_name="RooVars.pdf",TString args="")
+void PlotWorkspaceVars(RooWorkspace* ws_,std::vector<TString> vars,std::vector<RooDataSet*> data_list,std::vector<Double_t> weights_={1},TString output_name="RooVars.pdf",TString args="",bool setLogY=false)
         {
                 TCanvas * canvas = new TCanvas("canvas","canvas",800,800);
 
@@ -49,6 +49,7 @@ void PlotWorkspaceVars(RooWorkspace* ws_,std::vector<TString> vars,std::vector<R
 			legend->AddEntry(graph,data_list[j]->GetTitle(),"P");
                         }
                         frame->SetTitle(Form("A Rooplot of %s",vars[i].Data()));
+			if(setLogY){canvas->GetPad(i+1)->SetLogy();frame->SetMinimum(1);}
 			frame->Draw();
 			legend->Draw();
                 }
